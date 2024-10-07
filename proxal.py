@@ -132,7 +132,7 @@ def check_proxy(proxy_address: str):
             is_good_proxy = True
 
             break
-        except Exception as e:
+        except Exception:
             time.sleep(1)
             continue
     
@@ -141,8 +141,8 @@ def check_proxy(proxy_address: str):
     else:
         Config.BAD_PROXIES_COUNT += 1
 
-    Config.PROXY_CHECKER_THREADS -= 1
     Config.CHECKED_PROXIES_COUNT += 1
+    Config.PROXY_CHECKER_THREADS -= 1
 
 def main():
     clear_console()
@@ -174,7 +174,7 @@ def main():
             if not elapsed == 0:
                 if elapsed % 5 == 0:
                     if not elapsed == last_elapsed:
-                        logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET})")
+                        logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET}) Threads: ({Colors.BLUE}{Config.PROXY_CHECKER_THREADS}{Colors.RESET}/{Colors.BLUE}{Config.THREADS}{Colors.RESET})")
                         last_elapsed = elapsed
 
             if Config.PROXY_CHECKER_THREADS >= Config.THREADS:
@@ -191,7 +191,7 @@ def main():
         if not elapsed == 0:
             if elapsed % 5 == 0:
                 if not elapsed == last_elapsed:
-                    logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET})")
+                    logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET}) Threads: ({Colors.BLUE}{Config.PROXY_CHECKER_THREADS}{Colors.RESET}/{Colors.BLUE}{Config.THREADS}{Colors.RESET})")
                     last_elapsed = elapsed
 
         time.sleep(0.05)
@@ -200,6 +200,7 @@ def main():
             break
     
     logger.info(f"Proxy checking finished. Output file: {Config.OUTPUT_FILE.name}")
+    logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET}) Threads: ({Colors.BLUE}{Config.PROXY_CHECKER_THREADS}{Colors.RESET}/{Colors.BLUE}{Config.THREADS}{Colors.RESET})")
 
 if __name__ == "__main__":
     try:
