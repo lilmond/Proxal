@@ -1,4 +1,3 @@
-
 from urllib.parse import urlparse
 import threading
 import argparse
@@ -24,7 +23,7 @@ class Config:
 
 logging.basicConfig(
     format="[%(asctime)s] %(message)s",
-    datefmt="%m-%d-%Y %H:%M:%S",
+    datefmt="%m-%d-%Y-%H:%M:%S",
     level=logging.INFO
 )
 logger = logging.getLogger(__file__)
@@ -175,7 +174,7 @@ def main():
             if not elapsed == 0:
                 if elapsed % 5 == 0:
                     if not elapsed == last_elapsed:
-                        logger.info(f"Good Proxies: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad Proxies: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET})")
+                        logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET})")
                         last_elapsed = elapsed
 
             if Config.PROXY_CHECKER_THREADS >= Config.THREADS:
@@ -192,7 +191,7 @@ def main():
         if not elapsed == 0:
             if elapsed % 5 == 0:
                 if not elapsed == last_elapsed:
-                    logger.info(f"Good Proxies: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad Proxies: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET})")
+                    logger.info(f"Good: {Colors.GREEN}{Config.GOOD_PROXIES_COUNT}{Colors.RESET} | Bad: {Colors.RED}{Config.BAD_PROXIES_COUNT}{Colors.RESET} | Checked: ({Colors.BLUE}{Config.CHECKED_PROXIES_COUNT}{Colors.RESET}/{Colors.BLUE}{len(Config.FETCHED_PROXIES)}{Colors.RESET})")
                     last_elapsed = elapsed
 
         time.sleep(0.05)
