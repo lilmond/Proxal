@@ -1,5 +1,8 @@
 # Proxal
-Automated working proxy servers finder.
+Automated proxy-scraper written in Python.
+
+Join my Discord server: (https://discord.gg/Bnf3e8pkyj) for free hacking tools :3
+
 ![image](https://github.com/user-attachments/assets/ac2b1ab6-7457-4d2c-ab3e-1cfa407a954a)
 
 # Installation
